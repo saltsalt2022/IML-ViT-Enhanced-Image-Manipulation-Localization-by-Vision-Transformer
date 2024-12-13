@@ -14,7 +14,7 @@ This project enhances Vision Transformer (ViT) for image manipulation localizati
 
 ### 2.对模型的修改：
 
-![](D:\study_data\study\classes\3up\new_shot_class\homework\作业4-github复现实践\绘图1.jpg)
+![模型图](模型图.jpg)
 
 #### 在decoderhead的PredictHead 模块中增加分类值预测分支：
 
@@ -32,19 +32,12 @@ This project enhances Vision Transformer (ViT) for image manipulation localizati
 
 ### 结果
 
-根据文末中的训练的数据可以看到训练4了epoch的时候calss_loss的更新就比较缓慢了，然后修改Demo对测试图像进行测试，可用看到里面输出class_logits预测值为0.9876接近1，可以清晰分辨这是伪造图像。![image-20241213141050350](C:\Users\salt salt\AppData\Roaming\Typora\typora-user-images\image-20241213141050350.png)
-
-
-
-
+根据文末中的训练的数据可以看到训练4了epoch的时候calss_loss的更新就比较缓慢了，然后修改Demo对测试图像进行测试，可用看到里面输出class_logits预测值为0.9876接近1，可以清晰分辨这是伪造图像。
+![结果](结果截图.png)
 
 ### 实验中遇到的问题：
-
 1.没有理解清楚它数据集读取的方式，没有使用Au图像进行训练，导致得到的模型输出的分类值都近1，得重新训练了。。
-
 2.添加了Au图像之后则变成输出的分类值都近0，我认为这是因为json文件没有对图像进行打乱，而是按TP组和Au组的顺序排列，导致训练时相当于使用全假训练1epoch后再用全真训练1epoch。
-
 3.还有一个是以为真实图像的mask是NONE的，后面发现是会生成全为0的mask
-
 4.test_batch_size默认是2，导致我的一些改动有问题，后面debug发现改好就行了。
 
